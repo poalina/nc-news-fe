@@ -30,15 +30,15 @@ export default class TopicsList extends Component {
           <div className="overflow">
             {topics.map(topic => {
               return (
-                <li key={topic.slug}>
+                <div key={topic.slug}>
                   <Link to={`/topics/${topic.slug}`}>
-                    <i>{topic.slug}</i> - <b>{topic.description}</b>
+                    <b> # {topic.slug}</b> - {topic.description}
                   </Link>
                   <br />
                   {topic.slug === "cooking" && <img src={imgCooking} alt="" />}
                   {topic.slug === "football" && <img src={imgFootie} alt="" />}
                   {topic.slug === "coding" && <img src={imgCoding} alt="" />}
-                </li>
+                </div>
               );
             })}
           </div>

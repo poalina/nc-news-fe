@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import { Button } from "reactstrap";
 import ErrorPage from "./ErrorPage";
+import imgFootie from "../Pictures/football.jpeg";
+import imgCoding from "../Pictures/coding.jpeg";
+import imgCooking from "../Pictures/cooking.jpeg";
 
 export default class SingleArticle extends Component {
   state = { article: {}, isLoading: true, err: null };
@@ -25,7 +28,11 @@ export default class SingleArticle extends Component {
     return (
       <main>
         <Button color="danger">hey</Button>
+
         <h1>{article.title}</h1>
+        {article.topic === "cooking" && <img src={imgCooking} alt="" />}
+        {article.topic === "football" && <img src={imgFootie} alt="" />}
+        {article.topic === "coding" && <img src={imgCoding} alt="" />}
         <p>
           Author: <i>{article.author}</i>
         </p>
@@ -34,6 +41,7 @@ export default class SingleArticle extends Component {
         </p>
         <p> {article.body}</p>
         <p>Comments: {article.comment_count}</p>
+        <p>Votes: {article.votes} </p>
       </main>
     );
   }
