@@ -7,9 +7,12 @@ export default class ArticlesList extends Component {
   state = { articles: [], isLoading: true, sort_by: "created_at", err: null };
 
   componentDidMount() {
+    // console.log(this.props, "props");
+    const { topic } = this.props;
     api
-      .getAllArticles()
+      .getAllArticles(topic)
       .then(({ articles }) => {
+        console.log(articles, "articles");
         this.setState({ articles, isLoading: false });
       })
       .catch(err => {
