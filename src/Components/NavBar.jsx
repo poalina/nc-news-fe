@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 
 export default function NavBar() {
   return (
-    <nav className="navbar bg-dark navbar-expand-md navbar-dark ">
+    <nav className="navbar bg-dark navbar-expand-md navbar-dark sticky-top">
       <ul className="navbar-nav">
         <li className="navbar-item">
           <Link to="/"> Home | </Link>

@@ -20,7 +20,8 @@ export default class ArticlesList extends Component {
   }
 
   fetchArticles = sort_by => {
-    api.getAllArticles(sort_by).then(({ articles }) => {
+    const { topic, username } = this.props;
+    api.getAllArticles(topic, username, sort_by).then(({ articles }) => {
       this.setState({ articles, isLoading: false });
     });
   };

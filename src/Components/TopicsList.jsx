@@ -26,23 +26,19 @@ export default class TopicsList extends Component {
     if (err) return <ErrorPage err={err} />;
     return (
       <main>
-        <div className="topic-card">
-          <div className="overflow">
-            {topics.map(topic => {
-              return (
-                <div key={topic.slug}>
-                  <Link to={`/topics/${topic.slug}`}>
-                    <b> # {topic.slug}</b> - {topic.description}
-                  </Link>
-                  <br />
-                  {topic.slug === "cooking" && <img src={imgCooking} alt="" />}
-                  {topic.slug === "football" && <img src={imgFootie} alt="" />}
-                  {topic.slug === "coding" && <img src={imgCoding} alt="" />}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        {topics.map(topic => {
+          return (
+            <div key={topic.slug}>
+              <Link to={`/topics/${topic.slug}`}>
+                <b> # {topic.slug}</b> - {topic.description}
+              </Link>
+              <br />
+              {topic.slug === "cooking" && <img src={imgCooking} alt="" />}
+              {topic.slug === "football" && <img src={imgFootie} alt="" />}
+              {topic.slug === "coding" && <img src={imgCoding} alt="" />}
+            </div>
+          );
+        })}
       </main>
     );
   }

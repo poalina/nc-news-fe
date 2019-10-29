@@ -7,7 +7,9 @@ export default function ArticleCard(props) {
       {" "}
       <Link to={`/articles/${article.article_id}`}>
         {" "}
-        <li>{article.title}</li>
+        <li>
+          {article.title} - {article.author}
+        </li>
       </Link>
     </div>
   );

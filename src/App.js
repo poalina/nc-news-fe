@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import "../";
+//import "./App.css";
 import { Router } from "@reach/router";
 import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
@@ -23,6 +23,7 @@ export default class App extends Component {
           <ArticlesList path="/" />
           <ArticlesList path="/articles" />
           <ArticlesList path="/topics/:topic" />
+          <ArticlesList path="/users/:username" />
           <SingleArticle path="/articles/:article_id" />
           <TopicsList path="/topics" />
           <UsersList path="/users" />
