@@ -6,6 +6,7 @@ import imgFootie from "../Pictures/football.jpeg";
 import imgCoding from "../Pictures/coding.jpeg";
 import imgCooking from "../Pictures/cooking.jpeg";
 import CommentsList from "./CommentsList";
+import PostComment from "./PostComment";
 
 export default class SingleArticle extends Component {
   state = { article: {}, isLoading: true, err: null };
@@ -36,12 +37,15 @@ export default class SingleArticle extends Component {
           Author: <i>{article.author}</i>
         </p>
         <p>
-          Created at: <i>{article.created_at}</i>{" "}
+          Created at: <i>{new Date(article.created_at).toDateString()}</i>
         </p>
         <p> {article.body}</p>
         <p>Votes: {article.votes} </p>
         <p>Comments: {article.comment_count}</p>
         <Button color="danger">Show/Hide comments</Button>
+        <br />
+        <hr />
+        <PostComment />
         <br />
         <hr />
         <CommentsList article_id={article.article_id} />

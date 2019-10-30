@@ -22,7 +22,7 @@ export default class CommentsList extends Component {
             <div key={comment.comment_id}>
               <i>{comment.author}: </i> "{comment.body}"
               <br />
-              Created at: <i>{comment.created_at}</i>
+              Created at: <i>{new Date(comment.created_at).toDateString()}</i>
               <p>Votes: {comment.votes}</p>
               <hr />
             </div>
