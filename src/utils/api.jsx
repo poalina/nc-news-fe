@@ -2,7 +2,6 @@ import axios from "axios";
 const baseURL = "https://nc-new-app.herokuapp.com/api";
 
 export const getAllArticles = async (topic, username, sort_by) => {
-  console.log(username, "what is this");
   return await axios
     .get(`${baseURL}/articles`, {
       params: { topic, author: username, sort_by: sort_by }
@@ -38,4 +37,12 @@ export const getAllUsers = async () => {
   return await axios.get(`${baseURL}/users`).then(({ data }) => {
     return data;
   });
+};
+
+export const postCommentByArticleId = async (article_id, comment) => {
+  return await axios
+    .post(`${baseURL}/articles/${article_id}/comments`, comment)
+    .then(({ data }) => {
+      return data;
+    });
 };
