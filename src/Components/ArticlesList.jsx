@@ -8,22 +8,29 @@ export default class ArticlesList extends Component {
   state = { articles: [], isLoading: true, sort_by: "created_at", err: null };
 
   componentDidMount() {
-    const { topic } = this.props;
+    // const { topic, username } = this.props;
+    const { sort_by } = this.state;
+    this.fetchArticles(sort_by);
+    //   api
+    //     .getAllArticles(topic, username)
+    //     .then(({ articles }) => {
+    //       this.setState({ articles, isLoading: false });
+    //     })
+    //     .catch(err => {
+    //       this.setState({ err: err.response.data.msg, isLoading: false });
+    //     });
+  }
+
+  fetchArticles = sort_by => {
+    const { topic, username } = this.props;
     api
-      .getAllArticles(topic)
+      .getAllArticles(topic, username, sort_by)
       .then(({ articles }) => {
         this.setState({ articles, isLoading: false });
       })
       .catch(err => {
         this.setState({ err: err.response.data.msg, isLoading: false });
       });
-  }
-
-  fetchArticles = sort_by => {
-    const { topic, username } = this.props;
-    api.getAllArticles(topic, username, sort_by).then(({ articles }) => {
-      this.setState({ articles, isLoading: false });
-    });
   };
 
   render() {
