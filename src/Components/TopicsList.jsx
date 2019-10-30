@@ -5,6 +5,7 @@ import imgCoding from "../Pictures/coding.jpeg";
 import imgCooking from "../Pictures/cooking.jpeg";
 import ErrorPage from "./ErrorPage";
 import { Link } from "@reach/router";
+import { Spinner } from "reactstrap";
 
 export default class TopicsList extends Component {
   state = { topics: [], isLoading: true, err: null };
@@ -22,7 +23,13 @@ export default class TopicsList extends Component {
 
   render() {
     const { topics, isLoading, err } = this.state;
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading)
+      return (
+        <>
+          <Spinner color="info" />
+          <p>Loading...</p>
+        </>
+      );
     if (err) return <ErrorPage err={err} />;
     return (
       <main>

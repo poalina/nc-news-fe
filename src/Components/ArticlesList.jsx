@@ -3,6 +3,7 @@ import * as api from "../utils/api";
 import ArticleCard from "./ArticleCard";
 import ErrorPage from "./ErrorPage";
 import Sort from "./Sort";
+import { Spinner } from "reactstrap";
 
 export default class ArticlesList extends Component {
   state = { articles: [], isLoading: true, sort_by: "created_at", err: null };
@@ -35,7 +36,13 @@ export default class ArticlesList extends Component {
 
   render() {
     const { articles, isLoading, err } = this.state;
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading)
+      return (
+        <>
+          {" "}
+          <Spinner color="info" /> <p>Loading...</p>{" "}
+        </>
+      );
     if (err) return <ErrorPage err={err} />;
     return (
       <div>

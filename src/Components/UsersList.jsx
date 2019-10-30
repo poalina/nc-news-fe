@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import ErrorPage from "./ErrorPage";
 import { Link } from "@reach/router";
+import { Spinner } from "reactstrap";
 
 export default class UsersList extends Component {
   state = { users: [], isLoading: true, err: null };
@@ -18,8 +19,15 @@ export default class UsersList extends Component {
   }
 
   render() {
+    console.log(this.props.username, "username");
     const { users, isLoading, err } = this.state;
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading)
+      return (
+        <>
+          <Spinner color="info" />
+          <p>Loading...</p>
+        </>
+      );
     if (err) return <ErrorPage err={err} />;
     return (
       <div>
