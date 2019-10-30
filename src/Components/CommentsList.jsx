@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import PostComment from "./PostComment";
+// import PostComment from "./PostComment";
+// import DeleteComment from "./DeleteComment";
+import CommentCard from "./CommentCard";
 
 export default class CommentsList extends Component {
   state = { comments: [], isLoading: true };
@@ -13,13 +15,17 @@ export default class CommentsList extends Component {
   }
 
   addNewComment = comment => {
-    console.log(comment, "=== comments list ");
     this.setState(currState => {
-      //s console.log(currState.comments, "=== comments list ");
       return { comments: [comment, ...currState.comments] };
     });
   };
-
+  deleteComment = comment_id => {
+    api.deleteCommentById(comment_id);
+    const newState = this.state.comments.filter(comment => {
+      return comment.comment_id !== comment_id;
+    });
+    this.setState({ comments: newState });
+  };
   render() {
     const { comments, isLoading } = this.state;
     const { article_id } = this.props;
@@ -27,23 +33,12 @@ export default class CommentsList extends Component {
 
     return (
       <main>
-        <br />
-        <hr />
-        <PostComment
+        <CommentCard
           addNewComment={this.addNewComment}
           article_id={article_id}
+          comments={comments}
+          deleteComment={this.deleteComment}
         />
-        {comments.map(comment => {
-          return (
-            <div key={comment.comment_id}>
-              <i>{comment.author}: </i> "{comment.body}"
-              <br />
-              Created at: <i>{new Date(comment.created_at).toDateString()}</i>
-              <p>Votes: {comment.votes}</p>
-              <hr />
-            </div>
-          );
-        })}
       </main>
     );
   }

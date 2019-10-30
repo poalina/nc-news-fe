@@ -46,3 +46,7 @@ export const postCommentByArticleId = async (article_id, comment) => {
       return data;
     });
 };
+
+export const deleteCommentById = async comment_id => {
+  return await axios.delete(`${baseURL}/comments/${comment_id}`);
+};
