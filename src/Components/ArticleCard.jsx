@@ -4,11 +4,9 @@ export default function ArticleCard(props) {
   const { article } = props;
   return (
     <div>
-      {" "}
       <Link to={`/articles/${article.article_id}`}>
-        {" "}
         <li>
-          {article.title} - {article.author}
+          {article.title} - <i>{article.author}</i>
         </li>
       </Link>
     </div>

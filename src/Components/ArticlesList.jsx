@@ -6,20 +6,18 @@ import Sort from "./Sort";
 import { Spinner } from "reactstrap";
 
 export default class ArticlesList extends Component {
-  state = { articles: [], isLoading: true, sort_by: "created_at", err: null };
+  state = {
+    articles: [],
+    isLoading: true,
+    sort_by: "created_at",
+    err: null,
+    page: 1,
+    maxPage: Infinity
+  };
 
   componentDidMount() {
-    // const { topic, username } = this.props;
     const { sort_by } = this.state;
     this.fetchArticles(sort_by);
-    //   api
-    //     .getAllArticles(topic, username)
-    //     .then(({ articles }) => {
-    //       this.setState({ articles, isLoading: false });
-    //     })
-    //     .catch(err => {
-    //       this.setState({ err: err.response.data.msg, isLoading: false });
-    //     });
   }
 
   fetchArticles = sort_by => {
@@ -39,8 +37,7 @@ export default class ArticlesList extends Component {
     if (isLoading)
       return (
         <>
-          {" "}
-          <Spinner color="info" /> <p>Loading...</p>{" "}
+          <Spinner color="info" /> <p>Loading...</p>
         </>
       );
     if (err) return <ErrorPage err={err} />;
@@ -52,6 +49,8 @@ export default class ArticlesList extends Component {
             return <ArticleCard key={article.article_id} article={article} />;
           })}
         </ul>
+        <button> Prev page</button>
+        <button> Next page</button>
       </div>
     );
   }

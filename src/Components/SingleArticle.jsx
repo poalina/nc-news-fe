@@ -6,6 +6,8 @@ import imgFootie from "../Pictures/football.jpeg";
 import imgCoding from "../Pictures/coding.jpeg";
 import imgCooking from "../Pictures/cooking.jpeg";
 import CommentsList from "./CommentsList";
+import { Spinner } from "reactstrap";
+import Voting from "./Voting";
 
 export default class SingleArticle extends Component {
   state = { article: {}, isLoading: true, err: null };
@@ -24,7 +26,13 @@ export default class SingleArticle extends Component {
 
   render() {
     const { article, isLoading, err } = this.state;
-    if (isLoading) return <p>Loading...</p>;
+    const { username } = this.props;
+    if (isLoading)
+      return (
+        <>
+          <Spinner color="info" /> <p>Loading...</p>
+        </>
+      );
     if (err) return <ErrorPage err={err} />;
     return (
       <main>
@@ -40,13 +48,12 @@ export default class SingleArticle extends Component {
         </p>
         <p> {article.body}</p>
         <p>Votes: {article.votes} </p>
+        <Voting /> <br />
         <p>Comments: {article.comment_count}</p>
-        <Button color="danger">Show/Hide comments</Button>
-
+        <Button color="primary">Show/Hide comments</Button>
         <br />
         <hr />
-        <CommentsList article_id={article.article_id} />
-        {/* GET /api/articles/:article_id/comments */}
+        <CommentsList article_id={article.article_id} username={username} />
       </main>
     );
   }

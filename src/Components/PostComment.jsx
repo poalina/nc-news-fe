@@ -20,6 +20,7 @@ export default class PostComment extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input
+          required
           type="text"
           value={this.state.body}
           placeholder="write here..."

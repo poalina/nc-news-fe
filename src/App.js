@@ -10,27 +10,32 @@ import UsersList from "./Components/UsersList";
 import TopicsList from "./Components/TopicsList";
 import SingleArticle from "./Components/SingleArticle";
 import ErrorPage from "./Components/ErrorPage";
+import Layout from "./Components/Layout";
+// import NavBar3 from "./Components/NavBar3";
 
 export default class App extends Component {
   state = { username: "grumpy19" };
   render() {
     const { username } = this.state;
     return (
-      <div className="App">
+      <React.Fragment>
         <Header />
+        {/* <NavBar3 /> */}
         <NavBar username={username} />
         {/* <NavBar2 /> */}
-        <Router>
-          <ErrorPage default />
-          <ArticlesList path="/" username={username} />
-          <ArticlesList path="/articles" />
-          <ArticlesList path="/topics/:topic" />
-          <ArticlesList path="/users/:username" />
-          <SingleArticle path="/articles/:article_id" />
-          <TopicsList path="/topics" username={username} />
-          <UsersList path="/users" username={username} />
-        </Router>
-      </div>
+        <Layout>
+          <Router>
+            <ErrorPage default />
+            <ArticlesList path="/" username={username} />
+            <ArticlesList path="/articles" />
+            <ArticlesList path="/topics/:topic" />
+            <ArticlesList path="/users/:username" />
+            <SingleArticle path="/articles/:article_id" username={username} />
+            <TopicsList path="/topics" username={username} />
+            <UsersList path="/users" username={username} />
+          </Router>
+        </Layout>
+      </React.Fragment>
     );
   }
 }

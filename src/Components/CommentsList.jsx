@@ -28,7 +28,7 @@ export default class CommentsList extends Component {
   };
   render() {
     const { comments, isLoading } = this.state;
-    const { article_id } = this.props;
+    const { article_id, username } = this.props;
     if (isLoading) return <p>Loading...</p>;
 
     return (
@@ -37,6 +37,7 @@ export default class CommentsList extends Component {
           addNewComment={this.addNewComment}
           article_id={article_id}
           comments={comments}
+          username={username}
           deleteComment={this.deleteComment}
         />
       </main>

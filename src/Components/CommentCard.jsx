@@ -1,7 +1,8 @@
 import React from "react";
 import PostComment from "./PostComment";
 import DeleteComment from "./DeleteComment";
-import { Button } from "reactstrap";
+
+import Voting from "./Voting";
 
 export default function CommentCard(props) {
   return (
@@ -18,18 +19,18 @@ export default function CommentCard(props) {
             <i>{comment.author}: </i> "{comment.body}"
             <br />
             Created at: <i>{new Date(comment.created_at).toDateString()}</i>
-            <p>Votes: {comment.votes}</p>
-            <Button size="sm" color="success">
-              Vote Up
-            </Button>
-            <Button size="sm" color="danger">
-              Vote Down
-            </Button>{" "}
             <br />
-            <DeleteComment
-              comment_id={comment.comment_id}
-              deleteComment={props.deleteComment}
-            />
+            {props.username === comment.author && (
+              <>
+                <DeleteComment
+                  comment_id={comment.comment_id}
+                  deleteComment={props.deleteComment}
+                />
+                <br />
+              </>
+            )}
+            <p>Votes: {comment.votes}</p>
+            <Voting />
             <hr />
           </div>
         );

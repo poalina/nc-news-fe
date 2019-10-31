@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-export default function NavBar() {
+export default function NavBar(props) {
   return (
     <nav className="navbar bg-dark navbar-expand-md navbar-dark sticky-top">
       <ul className="navbar-nav">
@@ -17,6 +17,7 @@ export default function NavBar() {
         <li className="navbar-item">
           <Link to="/topics"> Topics</Link>
         </li>
+        <li> Signed in as: {props.username}</li>
       </ul>
     </nav>
 

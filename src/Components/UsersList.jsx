@@ -19,7 +19,6 @@ export default class UsersList extends Component {
   }
 
   render() {
-    console.log(this.props.username, "username");
     const { users, isLoading, err } = this.state;
     if (isLoading)
       return (
