@@ -45,10 +45,8 @@ const NavBar = props => {
                 <DropdownItem>
                   <NavLink href="/topics/football">Football</NavLink>
                 </DropdownItem>
-
                 <DropdownItem divider />
                 <DropdownItem>
-                  {" "}
                   <NavLink href="/topics">All topics</NavLink>
                 </DropdownItem>
               </DropdownMenu>

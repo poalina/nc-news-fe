@@ -51,10 +51,11 @@ export default class SingleArticle extends Component {
           Created at: <i>{new Date(article.created_at).toDateString()}</i>
         </p>
         <p> {article.body}</p>
-        {/* <p>Votes: {article.votes} </p> */}
         <Voting id={article.article_id} votes={article.votes} type="articles" />
         <br />
         <p>Comments: {article.comment_count}</p>
+
+        {/* BUTTON SHOW/HIDE - NO FUNCTIONALITY YET */}
         <Button color="primary">Show/Hide comments</Button>
         <br />
         <hr />

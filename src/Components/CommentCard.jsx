@@ -29,7 +29,6 @@ export default function CommentCard(props) {
                 <br />
               </>
             )}
-            {/* <p>Votes: {comment.votes}</p> */}
             <Voting
               type="comments"
               id={comment.comment_id}

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-//import "./App.css";
 import { Router } from "@reach/router";
 import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
 import ArticlesList from "./Components/ArticlesList";
-
 import UsersList from "./Components/UsersList";
 import TopicsList from "./Components/TopicsList";
 import SingleArticle from "./Components/SingleArticle";
@@ -17,10 +15,8 @@ export default class App extends Component {
     const { username } = this.state;
     return (
       <React.Fragment>
-        <Header />
+        <Header username={username} />
         <NavBar username={username} />
-        {/* <NavBar username={username} /> */}
-        {/* <NavBar2 /> */}
         <Layout>
           <Router>
             <ErrorPage default />

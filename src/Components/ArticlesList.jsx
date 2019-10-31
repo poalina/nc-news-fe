@@ -49,6 +49,7 @@ export default class ArticlesList extends Component {
             return <ArticleCard key={article.article_id} article={article} />;
           })}
         </ul>
+        {/* NO FUNCTIONALITY YET */}
         <button> Prev page</button>
         <button> Next page</button>
       </div>

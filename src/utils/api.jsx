@@ -52,11 +52,9 @@ export const deleteCommentById = async comment_id => {
 };
 
 export const patchVotesById = async (id, num, type) => {
-  // console.log(article_id, "article id from api");
   return await axios
     .patch(`${baseURL}/${type}/${id}`, { inc_votes: num })
     .then(({ data }) => {
-      console.log(data, "data article");
       return data;
     });
 };
