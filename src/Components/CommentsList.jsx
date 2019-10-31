@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-// import PostComment from "./PostComment";
-// import DeleteComment from "./DeleteComment";
+
 import CommentCard from "./CommentCard";
 
 export default class CommentsList extends Component {

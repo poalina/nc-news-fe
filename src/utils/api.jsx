@@ -50,3 +50,13 @@ export const postCommentByArticleId = async (article_id, comment) => {
 export const deleteCommentById = async comment_id => {
   return await axios.delete(`${baseURL}/comments/${comment_id}`);
 };
+
+export const patchVotesById = async (id, num, type) => {
+  // console.log(article_id, "article id from api");
+  return await axios
+    .patch(`${baseURL}/articles/${id}`, { inc_votes: num })
+    .then(({ data }) => {
+      console.log(data.article, "data article");
+      return data.article;
+    });
+};

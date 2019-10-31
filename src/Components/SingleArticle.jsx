@@ -37,9 +37,13 @@ export default class SingleArticle extends Component {
     return (
       <main>
         <h1>{article.title}</h1>
-        {article.topic === "cooking" && <img src={imgCooking} alt="" />}
-        {article.topic === "football" && <img src={imgFootie} alt="" />}
-        {article.topic === "coding" && <img src={imgCoding} alt="" />}
+        {article.topic === "cooking" && (
+          <img src={imgCooking} alt="topic:logo" />
+        )}
+        {article.topic === "football" && (
+          <img src={imgFootie} alt="topic:logo" />
+        )}
+        {article.topic === "coding" && <img src={imgCoding} alt="topic:logo" />}
         <p>
           Author: <i>{article.author}</i>
         </p>
@@ -47,8 +51,8 @@ export default class SingleArticle extends Component {
           Created at: <i>{new Date(article.created_at).toDateString()}</i>
         </p>
         <p> {article.body}</p>
-        <p>Votes: {article.votes} </p>
-        <Voting /> <br />
+        {/* <p>Votes: {article.votes} </p> */}
+        <Voting article_id={article.article_id} votes={article.votes} /> <br />
         <p>Comments: {article.comment_count}</p>
         <Button color="primary">Show/Hide comments</Button>
         <br />
