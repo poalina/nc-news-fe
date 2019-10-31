@@ -52,7 +52,8 @@ export default class SingleArticle extends Component {
         </p>
         <p> {article.body}</p>
         {/* <p>Votes: {article.votes} </p> */}
-        <Voting article_id={article.article_id} votes={article.votes} /> <br />
+        <Voting id={article.article_id} votes={article.votes} type="articles" />
+        <br />
         <p>Comments: {article.comment_count}</p>
         <Button color="primary">Show/Hide comments</Button>
         <br />

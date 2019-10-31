@@ -5,13 +5,11 @@ import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
 import ArticlesList from "./Components/ArticlesList";
 
-// import NavBar2 from "./Components/NavBar2";
 import UsersList from "./Components/UsersList";
 import TopicsList from "./Components/TopicsList";
 import SingleArticle from "./Components/SingleArticle";
 import ErrorPage from "./Components/ErrorPage";
 import Layout from "./Components/Layout";
-// import NavBar3 from "./Components/NavBar3";
 
 export default class App extends Component {
   state = { username: "grumpy19" };
@@ -20,8 +18,8 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <Header />
-        {/* <NavBar3 /> */}
         <NavBar username={username} />
+        {/* <NavBar username={username} /> */}
         {/* <NavBar2 /> */}
         <Layout>
           <Router>

@@ -3,23 +3,25 @@ import { Button } from "reactstrap";
 import * as api from "../utils/api";
 
 export default class Voting extends Component {
-  state = { voteChange: 0, isDisableUp: false, isDisableDown: false };
+  state = { voteChange: 0 };
 
   handleClick = num => {
-    const id = this.props.article_id;
+    const id = this.props.id;
+    const { type } = this.props;
 
-    api.patchVotesById(id, num).catch(console.log);
-
-    this.setState({ voteChange: 1, isDisable: true });
+    api.patchVotesById(id, num, type).catch(console.log);
+    this.setState(currentState => {
+      return { voteChange: currentState.voteChange + num };
+    });
   };
   render() {
-    const { isDisable, voteChange } = this.state;
+    const { voteChange } = this.state;
     return (
       <div>
         <p>Votes: {this.props.votes + voteChange}</p>
 
         <Button
-          disabled={isDisable}
+          disabled={voteChange === 1}
           size="sm"
           color="success"
           onClick={() => {
@@ -29,7 +31,7 @@ export default class Voting extends Component {
           Vote Up
         </Button>
         <Button
-          disabled={isDisable}
+          disabled={voteChange === -1}
           size="sm"
           color="danger"
           onClick={() => {

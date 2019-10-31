@@ -1,25 +1,63 @@
-import React from "react";
-import { Link } from "@reach/router";
+import React, { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
-export default function NavBar(props) {
+const NavBar = props => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
-    <nav className="navbar bg-light navbar-expand-md navbar-dark sticky-top">
-      <ul className="navbar-nav">
-        <li className="navbar-item">
-          <Link to="/"> Home | </Link>
-        </li>
-        <li className="navbar-item">
-          <Link to="/articles"> Articles | </Link>
-        </li>
-        <li className="navbar-item">
-          <Link to="/users"> Users | </Link>
-        </li>
-        <li className="navbar-item">
-          <Link to="/topics"> Topics | </Link>
-        </li>
+    <div>
+      <Navbar className="sticky-top" color="secondary" light expand="md">
+        <NavbarBrand href="/">Home</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/articles">Articles</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/users">Users</NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Topics
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <NavLink href="/topics/cooking">Cooking</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href="/topics/coding">Cooding</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href="/topics/football">Football</NavLink>
+                </DropdownItem>
 
-        <li> Signed in as: {props.username}</li>
-      </ul>
-    </nav>
+                <DropdownItem divider />
+                <DropdownItem>
+                  {" "}
+                  <NavLink href="/topics">All topics</NavLink>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
   );
-}
+};
+
+export default NavBar;

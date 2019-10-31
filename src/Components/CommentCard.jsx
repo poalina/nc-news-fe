@@ -29,8 +29,12 @@ export default function CommentCard(props) {
                 <br />
               </>
             )}
-            <p>Votes: {comment.votes}</p>
-            <Voting />
+            {/* <p>Votes: {comment.votes}</p> */}
+            <Voting
+              type="comments"
+              id={comment.comment_id}
+              votes={comment.votes}
+            />
             <hr />
           </div>
         );
