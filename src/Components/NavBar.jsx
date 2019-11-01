@@ -20,11 +20,11 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar color="secondary" dark expand="md">
+      <Navbar color="info" light expand="md">
         <NavbarBrand href="/">Home</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar position="fixed">
+          <Nav className="ml-auto position-sticky" navbar>
             <NavItem>
               <NavLink href="/articles">Articles</NavLink>
             </NavItem>
@@ -35,7 +35,7 @@ const NavBar = () => {
               <DropdownToggle nav caret>
                 Topics
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu right color="danger">
                 <DropdownItem>
                   <NavLink href="/topics/cooking">Cooking</NavLink>
                 </DropdownItem>

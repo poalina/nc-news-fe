@@ -3,7 +3,7 @@ import * as api from "../utils/api";
 
 import ErrorPage from "./ErrorPage";
 import Sort from "./Sort";
-import { Spinner } from "reactstrap";
+import { Spinner, Button } from "reactstrap";
 import Card1 from "./Card1";
 
 export default class ArticlesList extends Component {
@@ -32,9 +32,10 @@ export default class ArticlesList extends Component {
         this.setState({ err: err.response.data.msg, isLoading: false });
       });
   };
+  changePage = num => {};
 
   render() {
-    const { articles, isLoading, err } = this.state;
+    const { articles, isLoading, err, page } = this.state;
     // const { path } = this.props;
     // if statement if '/' show Card1, if path="/articles" show card 2
     if (isLoading)
@@ -53,8 +54,15 @@ export default class ArticlesList extends Component {
           })}
         </ul>
         {/* NO FUNCTIONALITY YET */}
-        <button> Prev page</button>
-        <button> Next page</button>
+        <Button
+          disabled={page === 1}
+          onClick={() => {
+            console.log("clicked");
+          }}
+        >
+          Prev page
+        </Button>
+        <Button> Next page</Button>
       </div>
     );
   }

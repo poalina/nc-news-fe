@@ -13,18 +13,9 @@ import {
   Button
 } from "reactstrap";
 
-export default function Card2() {
+export default function ArticleCard2() {
   return (
     <CardDeck>
-      <Card>
-        <CardImg top width="100%" src={imgCoding} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Coding</CardTitle>
-          <CardSubtitle>subtitle</CardSubtitle>
-          <CardText>TEXT</CardText>
-          <Button>Read more</Button>
-        </CardBody>
-      </Card>
       <Card>
         <CardImg top width="100%" src={imgCooking} alt="Card image cap" />
         <CardBody>
@@ -38,6 +29,15 @@ export default function Card2() {
         <CardImg top width="100%" src={imgFootie} alt="Card image cap" />
         <CardBody>
           <CardTitle>Football</CardTitle>
+          <CardSubtitle>subtitle</CardSubtitle>
+          <CardText>TEXT</CardText>
+          <Button>Read more</Button>
+        </CardBody>
+      </Card>
+      <Card>
+        <CardImg top width="100%" src={imgCoding} alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Coding</CardTitle>
           <CardSubtitle>subtitle</CardSubtitle>
           <CardText>TEXT</CardText>
           <Button>Read more</Button>

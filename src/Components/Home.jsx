@@ -1,7 +1,7 @@
 // import ArticlesList from "./ArticlesList";
 // import { Spinner } from "reactstrap";
 import ErrorPage from "./ErrorPage";
-import Card2 from "./Card2";
+import ArticleCard2 from "./ArticleCard2";
 
 import React, { Component } from "react";
 
@@ -18,8 +18,8 @@ export default class Home extends Component {
     if (err) return <ErrorPage err={err} />;
     return (
       <div>
-        <Card2 />
-        <Card2 />
+        <ArticleCard2 />
+        <ArticleCard2 />
         {/* <ArticlesList limit="4" /> */}
       </div>
     );
