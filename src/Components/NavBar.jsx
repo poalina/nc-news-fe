@@ -13,7 +13,7 @@ import {
   DropdownItem
 } from "reactstrap";
 
-const NavBar = props => {
+const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);

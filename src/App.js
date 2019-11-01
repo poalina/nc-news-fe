@@ -8,6 +8,7 @@ import TopicsList from "./Components/TopicsList";
 import SingleArticle from "./Components/SingleArticle";
 import ErrorPage from "./Components/ErrorPage";
 import Layout from "./Components/Layout";
+import Home from "./Components/Home";
 
 export default class App extends Component {
   state = { username: "grumpy19" };
@@ -20,7 +21,8 @@ export default class App extends Component {
         <Layout>
           <Router>
             <ErrorPage default />
-            <ArticlesList path="/" username={username} />
+            <Home path="/" />
+            {/* <ArticlesList path="/" username={username} /> */}
             <ArticlesList path="/articles" />
             <ArticlesList path="/topics/:topic" />
             <ArticlesList path="/users/:username" />
