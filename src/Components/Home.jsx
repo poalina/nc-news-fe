@@ -1,51 +1,27 @@
-import React from "react";
-import imgFootie from "../Pictures/football.jpeg";
-import imgCoding from "../Pictures/coding.jpeg";
-import imgCooking from "../Pictures/cooking.jpeg";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardGroup,
-  Button
-} from "reactstrap";
+// import ArticlesList from "./ArticlesList";
+// import { Spinner } from "reactstrap";
+import ErrorPage from "./ErrorPage";
+import Card2 from "./Card2";
 
-export default function Home() {
-  return (
-    <div>
-      <CardGroup>
-        <Card>
-          {" "}
-          <CardImg top width="100%" src={imgCoding} alt="Card image cap" />
-          <CardBody>
-            <CardTitle>Coding</CardTitle>
-            <CardSubtitle>subtitle</CardSubtitle>
-            <CardText>TEXT</CardText>
-            <Button>Read more</Button>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardImg top width="100%" src={imgCooking} alt="Card image cap" />
-          <CardBody>
-            <CardTitle>Cooking</CardTitle>
-            <CardSubtitle>subtitle</CardSubtitle>
-            <CardText>TEXT</CardText>
-            <Button>Read more</Button>
-          </CardBody>
-        </Card>
-        <Card>
-          <CardImg top width="40%" src={imgFootie} alt="Card image cap" />
-          <CardBody>
-            <CardTitle>Football</CardTitle>
-            <CardSubtitle>subtitle</CardSubtitle>
-            <CardText>TEXT</CardText>
-            <Button>Read more</Button>
-          </CardBody>
-        </Card>
-      </CardGroup>
-    </div>
-  );
+import React, { Component } from "react";
+
+export default class Home extends Component {
+  state = { err: null, isLoading: true };
+  render() {
+    const { err } = this.state;
+    // if (isLoading)
+    //   return (
+    //     <>
+    //       <Spinner color="info" /> <p>Loading...</p>
+    //     </>
+    //   );
+    if (err) return <ErrorPage err={err} />;
+    return (
+      <div>
+        <Card2 />
+        <Card2 />
+        {/* <ArticlesList limit="4" /> */}
+      </div>
+    );
+  }
 }

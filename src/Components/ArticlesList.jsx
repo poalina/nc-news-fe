@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import ArticleCard from "./ArticleCard";
+
 import ErrorPage from "./ErrorPage";
 import Sort from "./Sort";
 import { Spinner } from "reactstrap";
+import Card1 from "./Card1";
 
 export default class ArticlesList extends Component {
   state = {
@@ -21,9 +22,9 @@ export default class ArticlesList extends Component {
   }
 
   fetchArticles = sort_by => {
-    const { topic, username } = this.props;
+    const { topic, username, limit } = this.props;
     api
-      .getAllArticles(topic, username, sort_by)
+      .getAllArticles(topic, username, sort_by, limit)
       .then(({ articles }) => {
         this.setState({ articles, isLoading: false });
       })
@@ -34,6 +35,8 @@ export default class ArticlesList extends Component {
 
   render() {
     const { articles, isLoading, err } = this.state;
+    // const { path } = this.props;
+    // if statement if '/' show Card1, if path="/articles" show card 2
     if (isLoading)
       return (
         <>
@@ -46,7 +49,7 @@ export default class ArticlesList extends Component {
         <Sort articles={articles} fetchArticles={this.fetchArticles} />
         <ul>
           {articles.map(article => {
-            return <ArticleCard key={article.article_id} article={article} />;
+            return <Card1 key={article.article_id} article={article} />;
           })}
         </ul>
         {/* NO FUNCTIONALITY YET */}

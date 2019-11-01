@@ -20,11 +20,11 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar className="sticky-top" color="secondary" light expand="md">
+      <Navbar color="secondary" dark expand="md">
         <NavbarBrand href="/">Home</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
+          <Nav className="ml-auto" navbar position="fixed">
             <NavItem>
               <NavLink href="/articles">Articles</NavLink>
             </NavItem>
