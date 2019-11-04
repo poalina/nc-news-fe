@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-
 import ErrorPage from "./ErrorPage";
 import Sort from "./Sort";
 import { Spinner, Button } from "reactstrap";
@@ -32,7 +31,11 @@ export default class ArticlesList extends Component {
         this.setState({ err: err.response.data.msg, isLoading: false });
       });
   };
-  changePage = num => {};
+  changePage = direction => {
+    this.setState(currentState => {
+      return { page: currentState.page + direction };
+    });
+  };
 
   render() {
     const { articles, isLoading, err, page } = this.state;
@@ -53,16 +56,10 @@ export default class ArticlesList extends Component {
             return <Card1 key={article.article_id} article={article} />;
           })}
         </ul>
-        {/* NO FUNCTIONALITY YET */}
-        <Button
-          disabled={page === 0}
-          onClick={() => {
-            console.log("hey Wiola");
-          }}
-        >
+        <Button disabled={page === 1} onClick={() => this.changePage(-1)}>
           Prev page
-        </Button>
-        <Button> Next page</Button>
+        </Button>{" "}
+        <Button onClick={() => this.changePage(1)}> Next page</Button>
       </div>
     );
   }

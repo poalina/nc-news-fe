@@ -1,10 +1,10 @@
 import axios from "axios";
 const baseURL = "https://nc-new-app.herokuapp.com/api";
 
-export const getAllArticles = async (topic, username, sort_by, limit) => {
+export const getAllArticles = async (topic, username, sort_by, page) => {
   return await axios
     .get(`${baseURL}/articles`, {
-      params: { topic, author: username, sort_by: sort_by, limit: 3 }
+      params: { topic, author: username, sort_by: sort_by, limit: 3, p: page }
     })
     .then(({ data }) => {
       return data;
