@@ -9,14 +9,38 @@ import SingleArticle from "./Components/SingleArticle";
 import ErrorPage from "./Components/ErrorPage";
 import Layout from "./Components/Layout";
 import Home from "./Components/Home";
+import * as api from "./utils/api";
 
 export default class App extends Component {
-  state = { username: "grumpy19" };
+  state = {
+    username: "",
+    users: [],
+    isLoading: true,
+    err: null
+  };
+
+  componentDidMount() {
+    api
+      .getAllUsers()
+      .then(({ users }) => {
+        this.setState({ users, isLoading: false });
+      })
+      .catch(err => {
+        this.setState({ err: err.response.data.msg, isLoading: false });
+      });
+  }
+  changeUser = username => {
+    this.setState({ username }, () => {});
+  };
   render() {
-    const { username } = this.state;
+    const { username, users, isLoading, err } = this.state;
     return (
       <React.Fragment>
-        <Header username={username} />
+        <Header
+          username={username}
+          users={users}
+          changeUser={this.changeUser}
+        />
         <NavBar username={username} />
         <Layout>
           <Router>
@@ -28,7 +52,13 @@ export default class App extends Component {
             <ArticlesList path="/users/:username" />
             <SingleArticle path="/articles/:article_id" username={username} />
             <TopicsList path="/topics" username={username} />
-            <UsersList path="/users" username={username} />
+            <UsersList
+              path="/users"
+              username={username}
+              users={users}
+              isLoading={isLoading}
+              err={err}
+            />
           </Router>
         </Layout>
       </React.Fragment>

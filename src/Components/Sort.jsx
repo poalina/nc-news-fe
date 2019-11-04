@@ -4,7 +4,7 @@ export default class Sort extends Component {
   handleChange = event => {
     const sort_by = event.target.value;
 
-    this.props.fetchArticles(sort_by);
+    this.props.changeSortBy(sort_by);
   };
   render() {
     return (

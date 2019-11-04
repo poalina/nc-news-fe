@@ -8,6 +8,7 @@ export default function CommentCard(props) {
   return (
     <main>
       <PostComment
+        username={props.username}
         addNewComment={props.addNewComment}
         article_id={props.article_id}
       />

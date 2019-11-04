@@ -16,14 +16,15 @@ export default class ArticlesList extends Component {
   };
 
   componentDidMount() {
-    const { sort_by } = this.state;
-    this.fetchArticles(sort_by);
+    //const { sort_by } = this.state;
+    this.fetchArticles();
   }
 
-  fetchArticles = sort_by => {
-    const { topic, username, limit } = this.props;
+  fetchArticles = () => {
+    const { topic, username } = this.props;
+    const { page, sort_by } = this.state;
     api
-      .getAllArticles(topic, username, sort_by, limit)
+      .getAllArticles(topic, username, sort_by, page)
       .then(({ articles }) => {
         this.setState({ articles, isLoading: false });
       })
@@ -36,6 +37,18 @@ export default class ArticlesList extends Component {
       return { page: currentState.page + direction };
     });
   };
+
+  changeSortBy = sort_by => {
+    this.setState({ sort_by: sort_by });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    const pageChanged = prevState.page !== this.state.page;
+    const sortByChanged = prevState.sort_by !== this.state.sort_by;
+    if (pageChanged || sortByChanged) {
+      this.fetchArticles();
+    }
+  }
 
   render() {
     const { articles, isLoading, err, page } = this.state;
@@ -50,17 +63,22 @@ export default class ArticlesList extends Component {
     if (err) return <ErrorPage err={err} />;
     return (
       <div>
-        <Sort articles={articles} fetchArticles={this.fetchArticles} />
+        <Sort articles={articles} changeSortBy={this.changeSortBy} />
         <ul>
           {articles.map(article => {
             return <Card1 key={article.article_id} article={article} />;
           })}
         </ul>
-        {/* Pagination - No functionality yet, Im working on it :) */}
         <Button disabled={page === 1} onClick={() => this.changePage(-1)}>
           Prev page
         </Button>{" "}
-        <Button onClick={() => this.changePage(1)}> Next page</Button>
+        <Button
+          disabled={articles.length < 10}
+          onClick={() => this.changePage(1)}
+        >
+          {" "}
+          Next page
+        </Button>
       </div>
     );
   }

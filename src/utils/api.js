@@ -4,7 +4,7 @@ const baseURL = "https://nc-new-app.herokuapp.com/api";
 export const getAllArticles = async (topic, username, sort_by, page) => {
   return await axios
     .get(`${baseURL}/articles`, {
-      params: { topic, author: username, sort_by: sort_by, limit: 10, p: page }
+      params: { topic, author: username, sort_by: sort_by, p: page }
     })
     .then(({ data }) => {
       return data;
