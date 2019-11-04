@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
-import { Button } from "reactstrap";
+import { Button, Spinner } from "reactstrap";
 import ErrorPage from "./ErrorPage";
 import imgFootie from "../Pictures/football.jpeg";
 import imgCoding from "../Pictures/coding.jpeg";
 import imgCooking from "../Pictures/cooking.jpeg";
 import CommentsList from "./CommentsList";
-import { Spinner } from "reactstrap";
 import Voting from "./Voting";
 
 export default class SingleArticle extends Component {
-  state = { article: {}, isLoading: true, err: null };
+  state = { article: {}, isLoading: true, isVisible: false, err: null };
 
   componentDidMount() {
     const { article_id } = this.props;
@@ -23,9 +22,14 @@ export default class SingleArticle extends Component {
         this.setState({ err: err.response.data.msg, isLoading: false });
       });
   }
+  handleClickShowHide = () => {
+    this.setState(currentState => {
+      return { isVisible: !currentState.isVisible };
+    });
+  };
 
   render() {
-    const { article, isLoading, err } = this.state;
+    const { article, isLoading, err, isVisible } = this.state;
     const { username } = this.props;
     if (isLoading)
       return (
@@ -55,11 +59,14 @@ export default class SingleArticle extends Component {
         <br />
         <p>Comments: {article.comment_count}</p>
 
-        {/* BUTTON SHOW/HIDE - NO FUNCTIONALITY YET */}
-        <Button color="primary">Show/Hide comments</Button>
+        <Button color="primary" onClick={this.handleClickShowHide}>
+          {isVisible ? "Hide comments" : "Show comments"}
+        </Button>
         <br />
         <hr />
-        <CommentsList article_id={article.article_id} username={username} />
+        {isVisible && (
+          <CommentsList article_id={article.article_id} username={username} />
+        )}
       </main>
     );
   }

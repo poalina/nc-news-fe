@@ -55,9 +55,9 @@ export default class ArticlesList extends Component {
         </ul>
         {/* NO FUNCTIONALITY YET */}
         <Button
-          disabled={page === 1}
+          disabled={page === 0}
           onClick={() => {
-            console.log("clicked");
+            console.log("hey Wiola");
           }}
         >
           Prev page
