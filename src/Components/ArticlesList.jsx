@@ -56,6 +56,7 @@ export default class ArticlesList extends Component {
             return <Card1 key={article.article_id} article={article} />;
           })}
         </ul>
+        {/* Pagination - No functionality yet, Im working on it :) */}
         <Button disabled={page === 1} onClick={() => this.changePage(-1)}>
           Prev page
         </Button>{" "}
