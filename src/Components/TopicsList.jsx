@@ -4,8 +4,20 @@ import imgFootie from "../Pictures/football.jpeg";
 import imgCoding from "../Pictures/coding.jpeg";
 import imgCooking from "../Pictures/cooking.jpeg";
 import ErrorPage from "./ErrorPage";
-import { Link } from "@reach/router";
+// import { Link } from "@reach/router";
 import { Spinner } from "reactstrap";
+import CardTopics from "./CardTopics";
+import { navigate } from "@reach/router";
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  CardGroup
+} from "reactstrap";
 
 export default class TopicsList extends Component {
   state = { topics: [], isLoading: true, err: null };
@@ -32,21 +44,20 @@ export default class TopicsList extends Component {
       );
     if (err) return <ErrorPage err={err} />;
     return (
-      <main>
+      <CardGroup>
         {topics.map(topic => {
           return (
-            <div key={topic.slug}>
-              <Link to={`/topics/${topic.slug}`}>
-                <b> # {topic.slug}</b> - {topic.description}
-              </Link>
-              <br />
-              {topic.slug === "cooking" && <img src={imgCooking} alt="" />}
-              {topic.slug === "football" && <img src={imgFootie} alt="" />}
-              {topic.slug === "coding" && <img src={imgCoding} alt="" />}
-            </div>
+            <CardTopics topic={topic} key={topic.slug} />
+            // <div key={topic.slug}>
+            //   <Link to={`/topics/${topic.slug}`}>
+            //     <b> # {topic.slug}</b> - {topic.description}
+            //   </Link>
+            //   <br />
+
+            // </div>
           );
         })}
-      </main>
+      </CardGroup>
     );
   }
 }

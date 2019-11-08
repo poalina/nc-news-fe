@@ -4,27 +4,28 @@ import ErrorPage from "./ErrorPage";
 import Sort from "./Sort";
 import { Spinner, Button } from "reactstrap";
 import Card1 from "./Card1";
+import AscDesc from "./AscDesc";
 
 export default class ArticlesList extends Component {
   state = {
     articles: [],
     isLoading: true,
     sort_by: "created_at",
+    order: "desc",
     err: null,
     page: 1,
     maxPage: Infinity
   };
 
   componentDidMount() {
-    //const { sort_by } = this.state;
     this.fetchArticles();
   }
 
   fetchArticles = () => {
     const { topic, username } = this.props;
-    const { page, sort_by } = this.state;
+    const { page, sort_by, order } = this.state;
     api
-      .getAllArticles(topic, username, sort_by, page)
+      .getAllArticles(topic, username, sort_by, page, order)
       .then(({ articles }) => {
         this.setState({ articles, isLoading: false });
       })
@@ -64,6 +65,7 @@ export default class ArticlesList extends Component {
     return (
       <div>
         <Sort articles={articles} changeSortBy={this.changeSortBy} />
+        <AscDesc />
         <ul>
           {articles.map(article => {
             return <Card1 key={article.article_id} article={article} />;

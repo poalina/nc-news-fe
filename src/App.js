@@ -13,16 +13,16 @@ import * as api from "./utils/api";
 
 export default class App extends Component {
   state = {
-    user: "",
+    username: "",
     users: [],
     isLoading: true,
     err: null
   };
 
   componentDidMount() {
-    const user = localStorage.getItem("user");
-    if (user) {
-      this.setState({ user: JSON.parse(user) });
+    const username = localStorage.getItem("username");
+    if (username) {
+      this.setState({ username: JSON.parse(username) });
     }
     api
       .getAllUsers()
@@ -33,9 +33,9 @@ export default class App extends Component {
         this.setState({ err: err.response.data.msg, isLoading: false });
       });
   }
-  changeUser = user => {
-    this.setState({ user }, () => {
-      localStorage.setItem("user", JSON.stringify(user));
+  changeUser = username => {
+    this.setState({ username }, () => {
+      localStorage.setItem("username", JSON.stringify(username));
     });
   };
 
