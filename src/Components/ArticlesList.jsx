@@ -43,16 +43,24 @@ export default class ArticlesList extends Component {
     this.setState({ sort_by: sort_by });
   };
 
+  changeOrder = order => {
+    this.setState({ order });
+  };
+
   componentDidUpdate(prevProps, prevState) {
-    const pageChanged = prevState.page !== this.state.page;
-    const sortByChanged = prevState.sort_by !== this.state.sort_by;
-    if (pageChanged || sortByChanged) {
+    const { page, sort_by, order } = this.state;
+
+    if (
+      prevState.page !== page ||
+      prevState.sort_by !== sort_by ||
+      prevState.order !== order
+    ) {
       this.fetchArticles();
     }
   }
 
   render() {
-    const { articles, isLoading, err, page } = this.state;
+    const { articles, isLoading, err, page, order } = this.state;
     // const { path } = this.props;
     // if statement if '/' show Card1, if path="/articles" show card 2
     if (isLoading)
@@ -65,7 +73,7 @@ export default class ArticlesList extends Component {
     return (
       <div>
         <Sort articles={articles} changeSortBy={this.changeSortBy} />
-        <AscDesc />
+        <AscDesc order={order} changeOrder={this.changeOrder} />
         <ul>
           {articles.map(article => {
             return <Card1 key={article.article_id} article={article} />;

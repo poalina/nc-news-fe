@@ -20,9 +20,10 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar color="info" light expand="md">
+      <nav className="navbar navbar-light bg-light navbar-expand-lg">
+        {/* <Navbar color="info" light expand="md"> */}
         <NavbarBrand href="/">Home</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        <NavbarToggler onClick={toggle} className="mr-2" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto position-sticky" navbar>
             <NavItem>
@@ -40,7 +41,7 @@ const NavBar = () => {
                   <NavLink href="/topics/cooking">Cooking</NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink href="/topics/coding">Cooding</NavLink>
+                  <NavLink href="/topics/coding">Coding</NavLink>
                 </DropdownItem>
                 <DropdownItem>
                   <NavLink href="/topics/football">Football</NavLink>
@@ -53,7 +54,8 @@ const NavBar = () => {
             </UncontrolledDropdown>
           </Nav>
         </Collapse>
-      </Navbar>
+        {/* </Navbar> */}
+      </nav>
     </div>
   );
 };
