@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
 import { navigate } from "@reach/router";
 
-const Card1 = props => {
+const ArticleCard1 = props => {
   const {
     title,
     author,
@@ -44,4 +44,4 @@ const Card1 = props => {
   );
 };
 
-export default Card1;
+export default ArticleCard1;

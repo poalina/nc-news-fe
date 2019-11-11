@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import ErrorPage from "./ErrorPage";
 import Sort from "./Sort";
-import { Spinner, Button } from "reactstrap";
-import Card1 from "./Card1";
+import { Spinner, CardDeck, Button } from "reactstrap";
+import ArticleCard1 from "./ArticleCard1";
+import ArticleCard2 from "./ArticleCard2";
 import AscDesc from "./AscDesc";
 
 export default class ArticlesList extends Component {
@@ -14,7 +15,8 @@ export default class ArticlesList extends Component {
     order: "desc",
     err: null,
     page: 1,
-    maxPage: Infinity
+    maxPage: Infinity,
+    limit: 10
   };
 
   componentDidMount() {
@@ -22,10 +24,14 @@ export default class ArticlesList extends Component {
   }
 
   fetchArticles = () => {
-    const { topic, username } = this.props;
-    const { page, sort_by, order } = this.state;
+    console.log(this.props, "props z articlesList 27");
+    const { topic, username, limit, sort } = this.props;
+    let { page, sort_by, order } = this.state;
+    if (sort) {
+      sort_by = sort;
+    }
     api
-      .getAllArticles(topic, username, sort_by, page, order)
+      .getAllArticles(topic, username, sort_by, page, order, limit)
       .then(({ articles }) => {
         this.setState({ articles, isLoading: false });
       })
@@ -61,7 +67,15 @@ export default class ArticlesList extends Component {
 
   render() {
     const { articles, isLoading, err, page, order } = this.state;
-    // const { path } = this.props;
+    const { path } = this.props;
+    if (path === "/")
+      return (
+        <CardDeck>
+          {articles.map(article => {
+            return <ArticleCard2 key={article.article_id} article={article} />;
+          })}
+        </CardDeck>
+      );
     // if statement if '/' show Card1, if path="/articles" show card 2
     if (isLoading)
       return (
@@ -76,7 +90,7 @@ export default class ArticlesList extends Component {
         <AscDesc order={order} changeOrder={this.changeOrder} />
         <ul>
           {articles.map(article => {
-            return <Card1 key={article.article_id} article={article} />;
+            return <ArticleCard1 key={article.article_id} article={article} />;
           })}
         </ul>
         <Button disabled={page === 1} onClick={() => this.changePage(-1)}>

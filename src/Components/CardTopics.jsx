@@ -6,12 +6,12 @@ import { navigate } from "@reach/router";
 import {
   Card,
   CardImg,
-  CardText,
+  // CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button,
-  CardGroup
+  Button
+  // CardGroup
 } from "reactstrap";
 
 const CardTopics = ({ topic }) => {
