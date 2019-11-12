@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   Collapse,
-  // Navbar,
+  Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
@@ -20,7 +20,10 @@ const NavBar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-light bg-light navbar-expand-lg">
+      <nav
+        className="navbar sticky-top navbar-dark bg-dark navbar-expand-lg"
+        style={{ zIndex: 1 }}
+      >
         {/* <Navbar color="info" light expand="md"> */}
         <NavbarBrand href="/">Home</NavbarBrand>
         <NavbarToggler onClick={toggle} className="mr-2" />
@@ -36,7 +39,7 @@ const NavBar = () => {
               <DropdownToggle nav caret>
                 Topics
               </DropdownToggle>
-              <DropdownMenu right color="danger">
+              <DropdownMenu style={{ backgroundColor: "grey" }} right>
                 <DropdownItem>
                   <NavLink href="/topics/cooking">Cooking</NavLink>
                 </DropdownItem>
