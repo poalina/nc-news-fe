@@ -10,16 +10,24 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardDeck,
   Button
 } from "reactstrap";
 
 export default function ArticleCard2(props) {
-  const { title, author, created_at, article_id } = props.article;
+  const { title, author, created_at, article_id, topic } = props.article;
 
   return (
     <Card>
-      <CardImg top width="100%" src={imgCooking} alt="Card image cap" />
+      {topic === "cooking" && (
+        <CardImg top width="100%" src={imgCooking} alt="" />
+      )}
+      {topic === "football" && (
+        <CardImg top width="100%" src={imgFootie} alt="" />
+      )}
+      {topic === "coding" && (
+        <CardImg top width="100%" src={imgCoding} alt="" />
+      )}
+
       <CardBody>
         <CardTitle>
           <b>{title}</b>

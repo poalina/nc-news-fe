@@ -6,6 +6,7 @@ import { Spinner, CardDeck, Button } from "reactstrap";
 import ArticleCard1 from "./ArticleCard1";
 import ArticleCard2 from "./ArticleCard2";
 import AscDesc from "./AscDesc";
+import Heading from "./Heading";
 
 export default class ArticlesList extends Component {
   state = {
@@ -67,16 +68,20 @@ export default class ArticlesList extends Component {
 
   render() {
     const { articles, isLoading, err, page, order } = this.state;
-    const { path } = this.props;
+    const { path, sort } = this.props;
     if (path === "/")
       return (
-        <CardDeck>
-          {articles.map(article => {
-            return <ArticleCard2 key={article.article_id} article={article} />;
-          })}
-        </CardDeck>
+        <div>
+          <Heading sort={sort} />
+          <CardDeck>
+            {articles.map(article => {
+              return (
+                <ArticleCard2 key={article.article_id} article={article} />
+              );
+            })}
+          </CardDeck>
+        </div>
       );
-    // if statement if '/' show Card1, if path="/articles" show card 2
     if (isLoading)
       return (
         <>

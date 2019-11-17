@@ -18,9 +18,10 @@ export default class Home extends Component {
     if (err) return <ErrorPage err={err} />;
     return (
       <div>
-        {/* <ArticleCard2 />
-        <ArticleCard2 /> */}
-        <ArticlesList limit="3" path="/" />
+        <ArticlesList sort="votes" limit="3" path="/" />
+        <br />
+        <ArticlesList sort="comment_count" limit="3" path="/" /> <br />
+        <ArticlesList sort="created_at" limit="3" path="/" />
       </div>
     );
   }
